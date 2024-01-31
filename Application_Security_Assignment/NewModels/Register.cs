@@ -23,7 +23,8 @@ namespace Application_Security_Assignment.NewModels
 		public string MobileNo { get; set; }
 
 		[Required]
-		public string DeliveryAddress { get; set; }
+        [DataType(DataType.Text)]
+        public string DeliveryAddress { get; set; }
 
 		[Required]
         [DataType(DataType.EmailAddress)] //sanitation
