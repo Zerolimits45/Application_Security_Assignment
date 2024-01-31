@@ -29,8 +29,9 @@ builder.Services.ConfigureApplicationCookie(Config => // cookie options, ensure 
 	Config.Cookie.HttpOnly = true;
 	Config.LoginPath = "/Login";
 	Config.ExpireTimeSpan = TimeSpan.FromSeconds(5); // cookie timeout so you remove the cookies along with the session ending
-	Config.SlidingExpiration = true;
-	Config.Cookie.SameSite = SameSiteMode.Strict;
+	
+	Config.SlidingExpiration = true; // if the user is active, the session will not end
+	Config.Cookie.SameSite = SameSiteMode.Strict; // prevent cross site request forgery
 
 });
 
