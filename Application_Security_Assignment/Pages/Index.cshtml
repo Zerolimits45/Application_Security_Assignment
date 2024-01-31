@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome,@HttpContext.Session.GetString("Name") </h1>
+    <p>Account Details:</p>
+    <div class="card" style="width: 100%">
+        <div class="card-body">
+			<p class="card-text">Email: @HttpContext.Session.GetString("Email")</p>
+			<p class="card-text">Phone: @HttpContext.Session.GetString("PhoneNumber")</p>
+            <p class="card-text">Gender: @HttpContext.Session.GetString("Gender")</p>
+			<p class="card-text">Address: @HttpContext.Session.GetString("DeliveryAddress")</p>
+            <p class="card-text">Credit Card: @HttpContext.Session.GetString("CreditCard")</p>
+            <p class="card-text">About Me: @HttpContext.Session.GetString("AboutMe")</p>			
+        </div>
+    </div>
+    
+</div>

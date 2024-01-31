@@ -1,0 +1,133 @@
+﻿@page
+@model Application_Security_Assignment.Pages.RegisterModel
+@{
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () { 
+        $('#password').on('input', function () {
+            checkPasswordStrength($(this).val());
+        });
+
+        function checkPasswordStrength(password) {
+            // Reset the password strength indicator
+            $('#password-strength').html('');
+
+            // Minimum length requirement
+            if (password.length < 12) {
+                $('#password-strength').text('Minimum 12 characters');
+                return;
+            }
+
+            // Other strength criteria (you can customize these based on your requirements)
+            var hasUpperCase = /[A-Z]/.test(password);
+            var hasLowerCase = /[a-z]/.test(password);
+            var hasNumbers = /\d/.test(password);
+			var hasSpecialChars = /[^\da-zA-Z]/.test(password);
+
+            // Calculate strength based on criteria
+            var strength = 0;
+            strength += hasUpperCase ? 1 : 0;
+            strength += hasLowerCase ? 1 : 0;
+            strength += hasNumbers ? 1 : 0;
+            strength += hasSpecialChars ? 1 : 0;
+
+            // Display strength
+            if (strength >= 3) {
+                $('#password-strength').text('Strong');
+                $('#password-strength').addClass('text-success');
+            } else if (strength >= 2) {
+                $('#password-strength').text('Moderate');
+                $('#password-strength').addClass('text-warning');
+            } else {
+                $('#password-strength').text('Weak');
+                $('#password-strength').addClass('text-danger');
+            }
+        }
+    });
+</script>
+
+	<div class="container mt-5">
+
+		<div class="row justify-content-center align-items-center">
+
+			<div class= "col-sm-12 col-md-12 col-lg-4">
+				<h1 class="mb-3">Register</h1>
+			
+				<form method="post" enctype="multipart/form-data" asp-antiforgery="true">
+					<div asp-validation-summary="All" class="text-danger"></div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.FullName">Full Name</label>
+						<input type="text" asp-for="RModel.FullName" class="form-control" />
+						<span asp-validation-for="RModel.FullName" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.CreditCard">Credit Card</label>
+						<input type="text" asp-for="RModel.CreditCard" class="form-control" />
+						<span asp-validation-for="RModel.CreditCard" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.Gender">Gender</label>
+						<input type="text" asp-for="RModel.Gender" class="form-control" />
+						<span asp-validation-for="RModel.Gender" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.MobileNo">Mobile Number</label>
+						<input type="text" asp-for="RModel.MobileNo" class="form-control" />
+						<span asp-validation-for="RModel.MobileNo" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.DeliveryAddress">Delivery Address</label>
+						<input type="text" asp-for="RModel.DeliveryAddress" class="form-control" />
+						<span asp-validation-for="RModel.DeliveryAddress" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.Email">Email Address</label>
+						<input type="text" asp-for="RModel.Email" class="form-control" />
+						<span asp-validation-for="RModel.Email" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.Password">Password</label>
+						<input type="password" id="password" asp-for="RModel.Password" class="form-control" />
+						<span asp-validation-for="RModel.Password" class="text-danger"></span>
+
+						<div id="password-strength"></div> <!-- Client side validation -->
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.ConfirmPassword">Confirm Password</label>
+						<input type="password" asp-for="RModel.ConfirmPassword" class="form-control" />
+						<span asp-validation-for="RModel.ConfirmPassword" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.Photo">Photo</label>
+						<input type="file" asp-for="RModel.Photo" class="form-control" accept=".jpg" /> <!-- accept=".jpg" -->
+						<span asp-validation-for="RModel.Photo" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" asp-for="RModel.AboutMe">About Me</label>
+						<textarea asp-for="RModel.AboutMe" class="form-control"></textarea>
+						<span asp-validation-for="RModel.AboutMe" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<button type="submit" class="btn btn-primary">Register</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	
