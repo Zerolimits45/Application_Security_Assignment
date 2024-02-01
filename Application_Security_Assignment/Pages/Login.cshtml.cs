@@ -68,7 +68,7 @@ namespace Application_Security_Assignment.Pages
 				if (identityResult.Succeeded)
 				{
 					var user = await UserManager.FindByEmailAsync(LModel.Email); // find the user by email
-					string guid = Guid.NewGuid().ToString();
+					string guid = Guid.NewGuid().ToString(); // generate a new guid (practical)
 					if (user !=null)
 					{
 						HttpContext.Session.SetString("AuthToken", guid); // set the AuthToken to the session
