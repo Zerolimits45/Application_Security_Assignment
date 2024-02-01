@@ -79,6 +79,7 @@ namespace Application_Security_Assignment.Pages
 					{
 						
 						UserID = user.Id,
+						UserName = user.UserName,
 						Action = "Login",
 						Time = DateTime.Now,
 						

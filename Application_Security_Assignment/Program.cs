@@ -21,14 +21,14 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddDistributedMemoryCache(); //save session in memory
 builder.Services.AddSession(options => //session options
 {
-	options.IdleTimeout = TimeSpan.FromSeconds(5); // session timeout
+	options.IdleTimeout = TimeSpan.FromSeconds(15); // session timeout
 });
 
 builder.Services.ConfigureApplicationCookie(Config => // cookie options, ensure that the path is set to login page
 {
 	Config.Cookie.HttpOnly = true;
 	Config.LoginPath = "/Login";
-	Config.ExpireTimeSpan = TimeSpan.FromSeconds(5); // cookie timeout so you remove the cookies along with the session ending
+	Config.ExpireTimeSpan = TimeSpan.FromSeconds(15); // cookie timeout so you remove the cookies along with the session ending
 	
 	Config.SlidingExpiration = true; // if the user is active, the session will not end
 	Config.Cookie.SameSite = SameSiteMode.Strict; // prevent cross site request forgery

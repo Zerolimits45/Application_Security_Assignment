@@ -32,6 +32,7 @@ namespace Application_Security_Assignment.Pages
 			{
 
 				UserID = user.Id,
+				UserName = user.UserName,
 				Action = "Logged Out",
 				Time = DateTime.Now,
 
